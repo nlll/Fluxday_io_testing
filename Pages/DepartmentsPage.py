@@ -1,5 +1,6 @@
 from Pages.BasePage import BasePage, InvalidPageException
 from Pages.LoginPage import LoginPage
+from Util.AjaxHelper import AjaxHelper
 from Util.locators import locators_home_page, locators_depart_page
 
 
@@ -81,6 +82,12 @@ class DepartmentsPage(BasePage):
     def click_depart_delete(self):
         self.get_depart_delete.click()
 
+    def _validate_page(self):
+        try:
+            self.driver.find_element_by_css_selector(locators_home_page['loc_homepage_logo'])
+        except:
+            raise InvalidPageException('Departments page not loaded')
+
     # Departments page methods
     def login_with_admin(self):
         login_with_admin = LoginPage(self.driver)
@@ -92,18 +99,18 @@ class DepartmentsPage(BasePage):
 
     def click_save_btn(self):
         save_depart = DepartmentsPage(self.driver)
+        AjaxHelper.suspend(2)
         save_depart.click_create_depart_save_btn()
 
     def click_settings_icon(self):
         settings_icon = DepartmentsPage(self.driver)
+        AjaxHelper.suspend(2)
         settings_icon.click_icon_settings()
 
     def click_edit_link(self):
         edit_link = DepartmentsPage(self.driver)
         edit_link.click_depart_edit()
 
-    def _validate_page(self):
-        try:
-            assert self.driver.find_element_by_css_selector(locators_home_page['home_page_title']).text == 'Departments'
-        except AssertionError:
-            raise InvalidPageException('Departments page not loaded')
+    def refresh(self):
+        self.driver.refresh()
+        AjaxHelper.suspend(2)
