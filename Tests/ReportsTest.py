@@ -1,3 +1,4 @@
+import unittest
 from Tests.BaseTest import BaseTest
 
 class ReportsTest(BaseTest):
@@ -145,3 +146,5 @@ class ReportsTest(BaseTest):
         self.assertTrue("report_type_select" in self.driver.page_source)
         # Verify the right result
 
+if __name__ == "__main__":
+    unittest.main(verbosity=2)
