@@ -1,5 +1,4 @@
 from Pages.BasePage import BasePage, InvalidPageException
-from Pages.LoginPage import LoginPage
 from Util.AjaxHelper import AjaxHelper
 from Util.locators import locators_home_page, locators_depart_page
 
@@ -33,10 +32,14 @@ class DepartmentsPage(BasePage):
 
     @property
     def get_depart_title(self):
-        return self.driver.find_element_by_css_selector(locators_depart_page['loc_depart_title'])
+        return self.driver.find_element_by_css_selector(locators_depart_page['loc_create_depart_title'])
 
     def depart_title(self):
         self.get_depart_title.text()
+
+    def fill_depart_title(self, department_title):
+        self.get_depart_title.clear()
+        self.get_depart_title.send_keys(department_title)
 
     @property
     def get_create_depart_save_btn(self):
@@ -89,9 +92,6 @@ class DepartmentsPage(BasePage):
             raise InvalidPageException('Departments page not loaded')
 
     # Departments page methods
-    def login_with_admin(self):
-        login_with_admin = LoginPage(self.driver)
-        login_with_admin.log_in_with_user('admin@fluxday.io', 'password')
 
     def click_departments_link(self):
         depart_link = BasePage(self.driver)
@@ -109,6 +109,7 @@ class DepartmentsPage(BasePage):
 
     def click_edit_link(self):
         edit_link = DepartmentsPage(self.driver)
+        AjaxHelper.suspend(2)
         edit_link.click_depart_edit()
 
     def refresh(self):
