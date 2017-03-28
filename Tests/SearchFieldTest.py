@@ -1,3 +1,4 @@
+import unittest
 from selenium.webdriver.common.keys import Keys
 from Tests.BaseTest import BaseTest
 
@@ -20,3 +21,6 @@ class SeacrhFieldTest(BaseTest):
         search.click_search_field()
         #Verify the results for the searched keyword are shown
         self.assertTrue("Reports" in self.driver.page_source)
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)
