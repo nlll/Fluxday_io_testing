@@ -7,7 +7,6 @@ locators_home_page = {'loc_departments': 'Departments',
                       'loc_homepage_user': '//div[2]/div[1]/ul[3]/li[1]/a',
                       'home_page_title': '#pane2 div.pane2-meta div',
                       'loc_homepage_logo': 'h1 .app-logo'
-                      'oauth_title':'/html/body/div[2]/div[1]/ul[2]/li[8]/a'
                       }
 locators_login_page = {'loc_login_user': '#user_email',
                        'loc_login_pass': '#user_password',
