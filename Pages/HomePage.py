@@ -26,8 +26,15 @@ class HomePage(BasePage):
         self.get_search_field.clear()
         self.get_search_field.send_keys("Reports")
         self.get_search_field.send_keys(Keys.ENTER)
+ 
+     @property
+    def get_oauth_app_btn(self):
+        oauth=self.driver.find_element_by_xpath('/html/body/div[2]/div[1]/ul[2]/li[8]/a')
+        return oauth
 
-
+    def click_oauthapp_btn(self):
+        self.get_oauth_app_btn.click()
+        
     def _validate_page(self):
         try:
             assert self.driver.find_element_by_css_selector(locators_home_page['home_page_title']).text == 'Entries'
