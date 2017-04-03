@@ -28,7 +28,7 @@ class HomePage(BasePage):
         self.get_search_field.send_keys(Keys.ENTER)
  
      @property
-    def get_oauth_app_btn(self):
+     def get_oauth_app_btn(self):
         oauth=self.driver.find_element_by_xpath('/html/body/div[2]/div[1]/ul[2]/li[8]/a')
         return oauth
 
